@@ -1,4 +1,4 @@
-app.controller('AccountCtrl', function($mdDialog, $http, $window, $scope, $rootScope, Resource, Auth, Account, Identity, $timeout, $state, $localStorage) {
+app.controller('AccountCtrl', function($mdDialog, $http, $window, $scope, $rootScope, Resource, Account, Identity, $timeout, $state) {
   $scope.state = $state.current.name.split('.')[1];
   $scope.accountmenu = Account.menu();
   $scope.updates = {}
@@ -12,9 +12,9 @@ app.controller('AccountCtrl', function($mdDialog, $http, $window, $scope, $rootS
       templateUrl: 'account/dialog.html',
       clickOutsideToClose:true
     }).then(function(resp){
-      resetToken(resp);
+      $rootScope.resetToken(resp);
     }).catch(function(err){
-      console.log(err)
+      // console.log(err)
     })
   }
   $scope.cancel = function() {
@@ -27,19 +27,12 @@ app.controller('AccountCtrl', function($mdDialog, $http, $window, $scope, $rootS
     .then(function(resp){
       if(resp.status==200){
         if($scope.change==='attributes'){
-          resetToken(resp);
+          $rootScope.resetToken(resp);
         } else {$mdDialog.hide(resp.data);}
       } else {
         $scope.error = resp.data
       }
     });
-  }
-  function resetToken(resp){
-    if(resp.token){
-      $localStorage.token = resp.token;
-      delete resp.token;
-      $rootScope.currentUser = resp;
-    }
   }
 
   // resize account page height based on current state's height

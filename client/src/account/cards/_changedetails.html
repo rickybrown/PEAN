@@ -1,0 +1,45 @@
+<md-input-container class="md-block">
+  <input type="text"
+         name="number"
+         placeholder="Card Number"
+         ng-model="cc.number"
+         required/>
+</md-input-container>
+<div layout="row" class="md-inline-form">
+  <md-input-container flex="20">
+    <label>Expires</label>
+    <input type="text"
+           name="number"
+           ng-model="cc.exp_month"
+           placeholder="MM"
+           required/>
+  </md-input-container>
+  <md-input-container flex="20" md-no-float>
+    <input type="text"
+           name="number"
+           ng-model="cc.exp_year"
+           placeholder="YY"
+           required/>
+  </md-input-container>
+  <span flex="5"></span>
+  <md-input-container flex="20">
+    <!-- <md-tooltip>
+      3 digit security code
+    </md-tooltip> -->
+    <input type="text"
+           name="cvc"
+           placeholder="CVC"
+           ng-model="cc.cvc"
+           required/>
+  </md-input-container>
+  <span flex="5"></span>
+  <md-input-container flex="30">
+    <!-- <md-tooltip>
+      Card Billing Zip Code
+    </md-tooltip> -->
+    <input type="text"
+           name="zip"
+           placeholder="Zip Code"
+           ng-model="cc.address_zip"
+           required/>
+  </md-input-container>

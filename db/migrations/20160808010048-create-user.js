@@ -22,6 +22,21 @@ module.exports = {
       admin: {
         type: Sequelize.BOOLEAN
       },
+      customerId: {
+        type: Sequelize.STRING
+      },
+      cardId: {
+        type: Sequelize.STRING
+      },
+      card: {
+        type: Sequelize.STRING
+      },
+      last4: {
+        type: Sequelize.INTEGER
+      },
+      exp: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

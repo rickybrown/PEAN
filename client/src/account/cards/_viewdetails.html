@@ -1,0 +1,53 @@
+<div ng-hide="editMode==true">
+  <div class="cc">
+    <md-button class="delete md-warn" ng-click="remove()">
+      Remove Card
+    </md-button>
+    <div class="card">
+      {{currentUser.card | limitTo:13}}
+    </div>
+    <div class="number">
+      xxxx&nbsp;&nbsp;&nbsp;xxxx&nbsp;&nbsp;&nbsp;xxxx&nbsp;&nbsp;&nbsp;<strong>{{currentUser.last4}}</strong>
+    </div>
+    <md-button class="change md-default md-raised" ng-click="editMode=true">
+      Change Details
+    </md-button>
+    <div class="exp">
+      expires&nbsp;&nbsp;<strong>{{currentUser.exp}}</strong>
+    </div>
+  </div>
+</div>
+<div ng-show="editMode==true">
+  <p ng-hide="error"></p>
+  <md-input-container class="md-block">
+    card: xxxx-xxxx-xxxx-{{currentUser.last4}}
+  </md-input-container>
+  <div layout="row" class="md-inline-form">
+    <md-input-container flex="20">
+      <label>Expires</label>
+      <input type="text"
+             name="number"
+             ng-model="cc.exp_month"
+             placeholder="MM"
+             required/>
+    </md-input-container>
+    <md-input-container flex="20" md-no-float>
+      <input type="text"
+             name="number"
+             ng-model="cc.exp_year"
+             placeholder="YY"
+             required/>
+    </md-input-container>
+    <span flex="5"></span>
+    <md-input-container flex="30">
+      <!-- <md-tooltip>
+        Card Billing Zip Code
+      </md-tooltip> -->
+      <input type="text"
+             name="zip"
+             placeholder="Zip Code"
+             ng-model="cc.address_zip"
+             required/>
+    </md-input-container>
+  </div>
+</div>

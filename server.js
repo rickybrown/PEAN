@@ -27,6 +27,8 @@ app.use(function(req, res, next) {
 app.use('/api/auth', require('./api/controllers/auth'));
 app.use('/api/users', require('./api/controllers/users'));
 app.use('/api/posts', require('./api/controllers/posts'));
+app.use('/api/cards', require('./api/controllers/cards'));
+app.use('/api/charges', require('./api/controllers/charges'));
 app.use('/api/identities', require('./api/controllers/identities'));
 
 // Serve Application

@@ -1,0 +1,50 @@
+
+
+<md-dialog class="account" ng-controller="CardsCtrl">
+  <form flex ng-submit="update(cc)" ng-if="currentUser.cardId">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Change Credit Card</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon aria-label="Close dialog">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <div class="error dialog" ng-show="error">{{error}}</div>
+    <md-dialog-content>
+      <ng-include src="'account/cards/_viewdetails.html'"></ng-include>
+    </md-dialog-content>
+    <md-dialog-actions layout="row" ng-show="editMode==true">
+      <md-button ng-click="cancel()">Cancel</md-button>
+      <span flex></span>
+      <md-button type="submit" class="md-raised md-primary">
+        Update Card
+      </md-button>
+    </md-dialog-actions>
+  </form>
+
+  <form flex ng-submit="update(cc)" ng-if="!currentUser.cardId">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Add Credit Card</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon aria-label="Close dialog">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <div class="error dialog" ng-show="error">{{error}}</div>
+    <md-dialog-content>
+      <p ng-hide="error"></p>
+      <ng-include src="'account/cards/_changedetails.html'"></ng-include>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button ng-click="cancel()">Cancel</md-button>
+      <span flex></span>
+      <md-button type="submit" class="md-raised md-primary">
+        Save Card
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

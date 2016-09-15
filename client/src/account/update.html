@@ -16,7 +16,7 @@
       <md-card flex ng-click="dialog('password')">
         Password<md-icon>vpn_key</md-icon>
       </md-card>
-      <md-card flex ng-click="dialog('cc')">
+      <md-card flex ng-controller="CardsCtrl" ng-click="change()">
         Card<md-icon>credit_card</md-icon>
       </md-card>
     </div>

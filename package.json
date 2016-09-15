@@ -43,7 +43,8 @@
     "pg-hstore": "^2.3.2",
     "q": "^1.4.1",
     "request": "^2.74.0",
-    "sequelize": "^3.23.3"
+    "sequelize": "^3.23.3",
+    "stripe": "^4.10.0"
   },
   "devDependencies": {
     "del": "^2.2.0",

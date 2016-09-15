@@ -17,7 +17,13 @@ module.exports = function(sequelize, DataTypes) {
     admin: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
-    }
+    },
+    customerId: DataTypes.STRING,
+    cardId: DataTypes.STRING,
+    card: DataTypes.STRING,
+    last4: DataTypes.INTEGER,
+    exp: DataTypes.STRING,
+
   }, {
     classMethods: {
       associate: function(models) {

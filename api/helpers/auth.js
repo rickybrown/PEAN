@@ -15,11 +15,8 @@ var publicApiPaths = ['auth']
 auth.login = function(user, formPassword) {
   var defer = require('q').defer();
   if(bcrypt.compareSync(formPassword, user.password)) {
-    delete user.password
-    var token = jwt.sign({info:user}, config.secret, {
-      expiresIn: 1440 // expires in 24 hours
-    });
-    defer.resolve(token);
+    updateToken(user);
+    defer.resolve(user.token);
   } else {
     defer.reject(error.auth.log.wrong);
   }
@@ -29,12 +26,13 @@ auth.login = function(user, formPassword) {
 auth.update = function(user, password, body) {
   var defer = require('q').defer();
   if(body.type === 'attributes') {defer.resolve(body);}
+  else if(body.type === 'card') {
+    updateToken(user); defer.resolve(user);
+  }
   else if(bcrypt.compareSync(body.currentPassword, password)) {
     if(body.type === 'email'){
       user.email = body.email;
-      user.token = jwt.sign({info:user}, config.secret, {
-        expiresIn: 1440 // expires in 24 hours
-      });
+      updateToken(user);
       defer.resolve(body);
     } else if(body.type === 'password'){
       if(auth.validate('password', body.newPassword)){
@@ -87,6 +85,13 @@ auth.authenticateRequests = function(req, res, next){
 auth.validate = function(type, string){
   if(type==='password')
   return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,15}$/.test(string);
+}
+
+function updateToken(user){
+  delete user.password
+  user.token = jwt.sign({info:user}, config.secret, {
+    expiresIn: 1440 // expires in 24 hours
+  });
 }
 
 module.exports = auth;
